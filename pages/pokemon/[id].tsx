@@ -113,7 +113,8 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
     paths: pokemons151.map((id) => ({
       params: { id },
     })),
-    fallback: false,
+    // fallback: false
+    fallback: "blocking",
   };
 };
 
@@ -132,12 +133,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       pokemon,
     },
+    revalidate: 86400,
   };
-  // const { data } = await pokeApi.get<PokemonFull>(`/pokemon/${id}`);
-
-  // return {
-  //   props: { pokemon: data },
-  // };
 };
 
 export default PokemonPage;
